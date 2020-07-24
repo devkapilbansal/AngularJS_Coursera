@@ -5,7 +5,8 @@ angular.module('FirstApp',[])
 
 .controller('MyFirstController',function($scope){
  $scope.name="";
- $scope.totalValue=0;
+ 
+ var items=$scope.name.split(',');
 
  $scope.displayNumeric=function(){
  	var totalNameValue = calculateNumeric($scope.name);
@@ -23,5 +24,30 @@ function calculateNumeric(string){
 
 });
 
+
+angular.module('DIAPP',[])
+.controller('DIController',DIController);
+
+DIController.$inject=["$scope","$filter"];
+
+function DIController($scope,$filter){
+	$scope.name ="Kapil";
+	$scope.upper=function(){
+		var upCase= $filter('uppercase');
+		$scope.name=upCase($scope.name);
+	};
+}
+
+angular.module('MsgApp',[])
+.controller('MsgController',MsgController);
+
+MsgController.$inject=["$scope"];
+function MsgController($scope){
+	$scope.name ="Kapil";
+	$scope.say=function(){
+		return "Kapil likes _."
+	};
+
+}
 
 })();
