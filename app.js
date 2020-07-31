@@ -24,7 +24,6 @@ function calculateNumeric(string){
 
 });
 
-
 angular.module('DIAPP',[])
 .controller('DIController',DIController);
 
@@ -47,7 +46,35 @@ function MsgController($scope){
 	$scope.say=function(){
 		return "Kapil likes _."
 	};
+}
 
+angular.module('FilterApp',[])
+.controller('LoveController',LoveController)
+.filter('loves',LovesFilter)
+.filter('truth',TruthFilter);
+
+LoveController.$inject=["$scope","lovesFilter"];
+
+function LoveController($scope,lovesFilter){
+	$scope.name ="Rohan";
+	$scope.msg= $scope.name +" likes Sohan.";
+	$scope.loves= lovesFilter($scope.msg);
+}
+
+function LovesFilter() {
+	return function (input){
+		input = input || "";
+		input = input.replace("likes","loves");
+		return input;
+	};
+}
+
+function TruthFilter(){
+	return function (input, target, replace){
+		input = input || "";
+		input = input.replace(target,replace);
+		return input;
+	};
 }
 
 })();

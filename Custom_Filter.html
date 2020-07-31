@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="angular.min.js"></script>
+	<script src="app.js"></script>
+	<title>Making Custom Filter</title>
+</head>
+<body ng-app="FilterApp">
+	<div ng-controller="LoveController">
+		<input type="text" ng-model="name">
+		{{ name }}
+		{{ msg }}
+		{{loves}}
+		<br>
+		{{ loves | truth: 'Rohan':'Mohan' | truth: 'Sohan':'Shyam' |uppercase }}
+	</div>
+</body>
+</html>
