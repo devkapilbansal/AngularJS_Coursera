@@ -139,4 +139,92 @@ function CounterController($scope){
 	// });
 }
 
+angular.module('BindingApp',[])
+.controller("BindingController",BindingController);
+
+BindingController.$inject=["$scope"];
+function BindingController($scope){
+	$scope.firstName = "Kapil";
+	// $scope.fullName = "";
+
+	$scope.showWatchers =function(){
+		console.log('# of Watcher: ',$scope.$$watchersCount);
+	};
+
+	$scope.setFullName= function(){
+		$scope.fullName = $scope.firstName + " "+"Bansal";
+	};
+
+	$scope.logFirstName = function(){
+		console.log("First Name is: ",$scope.firstName);
+
+	};
+
+	$scope.logFullName = function(){
+		console.log(" Full Name is: ",$scope.fullName);
+	}
+}
+
+angular.module('ShoppingListApp',[])
+.controller("ShoppingListController",ShoppingListController);
+
+var shoppingList1 = [
+	"Milk", "Donuts", "Cookies", "Chocolates", "Peanut", "Ice Cream", "Dosa", "Pav Bhaji"
+];
+
+var shoppingList2 = [
+	{
+		name: "Milk",
+		quantity: "3"
+	},
+	{
+		name: "Donuts",
+		quantity: "150"
+	},
+	{
+		name: "Cookies",
+		quantity: "43"
+	},
+	{
+		name: "Chocolates",
+		quantity: "6"
+	},
+	{
+		name: "Dosa",
+		quantity: "2"
+	}
+];
+ShoppingListController.$inject=["$scope"];
+function ShoppingListController($scope){
+	$scope.shoppingList1=shoppingList1;
+	$scope.shoppingList2=shoppingList2;
+
+	$scope.addToList = function(){
+		var item = {
+			name: $scope.newItemName,
+			quantity: $scope.newItemQuantity
+		};
+
+		$scope.shoppingList2.push(item);
+	};
+}
+
+var numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log("Number Array: ", numArray);
+
+function above5(value){
+	return value>5;
+}
+
+var filteredArray = numArray.filter(above5);
+console.log("Filtered Array",filteredArray);
+
+var searchvalue = "Ice";
+function contains(value){
+	return value.indexOf(searchvalue) !==-1;
+}
+
+var seachedshoppingList = shoppingList1.filter(contains);
+
+console.log("Filtered List",seachedshoppingList);
 })();
